@@ -5,7 +5,7 @@
 <div class="row justify-content-center">
     <div class="col-md-6">
         <h2>Apply for Parking Pass</h2>
-        <form method="POST">
+        <form method="POST" enctype="multipart/form-data">
             {{ form.hidden_tag() }}
             <div class="mb-3">
                 {{ form.vehicle_number.label(class="form-label") }}
@@ -14,6 +14,14 @@
             <div class="mb-3">
                 {{ form.vehicle_type.label(class="form-label") }}
                 {{ form.vehicle_type(class="form-select") }}
+            </div>
+            <div class="mb-3">
+                {{ form.mobile_number.label(class="form-label") }}
+                {{ form.mobile_number(class="form-control") }}
+            </div>
+            <div class="mb-3">
+                {{ form.photo.label(class="form-label") }}
+                {{ form.photo(class="form-control") }}
             </div>
             <div class="mb-3">
                 {{ form.submit(class="btn btn-primary") }}

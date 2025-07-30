@@ -2,7 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %}Parking Pass System{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- 🔽 Page Title -->
+    <title>{% block title %}RailPass+{% endblock %}</title>
+
+    <!-- 🔽 Favicon / Tab Logo -->
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='NWR_logo.jpg') }}">
+
+    <!-- Stylesheets -->
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
@@ -10,8 +18,17 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="{{ url_for('main.home') }}">Parking Pass</a>
-            <div class="collapse navbar-collapse">
+            <!-- 🔽 Brand Logo and Text -->
+            <a class="navbar-brand d-flex align-items-center" href="{{ url_for('main.home') }}">
+                <img src="{{ url_for('static', filename='railpass_logo.png') }}" alt="RailPass+" style="height: 30px;" class="me-2">
+                RailPass+
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     {% if current_user.is_authenticated %}
                         <li class="nav-item">
@@ -33,7 +50,7 @@
         </div>
     </nav>
 
-    <!-- Main Content -->
+    <!-- Flash Messages -->
     <div class="container mt-4">
         {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
@@ -42,7 +59,10 @@
                 {% endfor %}
             {% endif %}
         {% endwith %}
+    </div>
 
+    <!-- Page Content -->
+    <div class="container mt-4">
         {% block content %}{% endblock %}
     </div>
 
@@ -50,5 +70,8 @@
     <footer class="footer bg-dark text-white text-center py-3 mt-4">
         &copy; 2025 Vehicle Parking Pass System
     </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

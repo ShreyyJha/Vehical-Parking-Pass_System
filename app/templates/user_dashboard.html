@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Dashboard</title>
+</head>
+<body>
+    <h1>Welcome, {{ user.name }}!</h1>
+    <p>This is your dashboard.</p>
+    <!-- Add user-specific content here -->
+    <a href="{{ url_for('main.logout') }}">Logout</a>
+</body>
+</html>

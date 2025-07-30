@@ -4,13 +4,16 @@
 {% block content %}
 <h2>Welcome, {{ current_user.name }}!</h2>
 <p>Your Applications:</p>
-<table class="table">
+
+{% if applications %}
+<table class="table table-striped">
     <thead>
         <tr>
             <th>ID</th>
             <th>Vehicle Number</th>
             <th>Vehicle Type</th>
             <th>Status</th>
+            <th>Download</th>
         </tr>
     </thead>
     <tbody>
@@ -20,9 +23,20 @@
             <td>{{ app.vehicle_number }}</td>
             <td>{{ app.vehicle_type }}</td>
             <td>{{ app.status }}</td>
+            <td>
+                {% if app.status == 'Approved' %}
+                <a href="{{ url_for('main.download_pass', app_id=app.id) }}" class="btn btn-success btn-sm">Download</a>
+                {% else %}
+                <span class="text-muted">Not Available</span>
+                {% endif %}
+            </td>
         </tr>
         {% endfor %}
     </tbody>
 </table>
-<a href="{{ url_for('main.apply') }}" class="btn btn-primary">Apply for New Pass</a>
+{% else %}
+<p>No applications found.</p>
+{% endif %}
+
+<a href="{{ url_for('main.apply') }}" class="btn btn-primary mt-3">Apply for New Pass</a>
 {% endblock %}

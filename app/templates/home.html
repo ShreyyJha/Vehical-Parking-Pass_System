@@ -1,12 +1,19 @@
+<!-- templates/home.html -->
 {% extends 'base.html' %}
-{% block title %}Home - Parking Pass{% endblock %}
+{% block title %}RailPass+{% endblock %}
 
 {% block content %}
 <div class="text-center">
-    <h1 class="display-4">Welcome to the Parking Pass System</h1>
+    <h1 class="display-4">Welcome to RailPass+</h1>
     <p class="lead">Apply for and manage your parking pass online. No paperwork needed.</p>
+</div>
+
+<!-- Logo Section -->
+<div class="d-flex justify-content-center align-items-center flex-column" style="height: 60vh;">
+    <img src="{{ url_for('static', filename='railpass_logo.png') }}" alt="RailPass+" class="img-fluid mb-4" style="max-height: 400px;">
+    
     {% if not current_user.is_authenticated %}
     <a href="{{ url_for('main.register') }}" class="btn btn-primary btn-lg">Get Started</a>
     {% endif %}
 </div>
-{% endblock %}
+{% endblock %}
